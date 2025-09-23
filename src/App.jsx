@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
@@ -9,11 +9,15 @@ function App() {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
   const [localLoggedIn, setLocalLoggedIn] = useState(false);
   const [localUser, setLocalUser] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     try {
       const savedUser = JSON.parse(localStorage.getItem("user"));
       const savedLogin = localStorage.getItem("isLoggedIn") === "true";
+      if (!isLoggedIn || !user) {
+        dispatch({ isLoggedIn: savedLogin, user: savedUser });
+      }
       setLocalLoggedIn(savedLogin);
       setLocalUser(savedUser);
     } catch (error) {
