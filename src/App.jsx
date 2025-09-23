@@ -6,22 +6,22 @@ import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
-  const { isLoggedIn } = useSelector((state) => state.auth);
-  // const [localLoggedIn, setLocalLoggedIn] = useState(false);
-  // const [ready, setReady] = useState(false);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const [localLoggedIn, setLocalLoggedIn] = useState(false);
+  const [localUser, setLocalUser] = useState(null);
 
-  // useEffect(() => {
-  //   const savedLogin = localStorage.getItem("isLoggedIn") === "true";
-  //   setLocalLoggedIn(savedLogin);
-  //   setReady(true);
-  // }, []);
+  useEffect(() => {
+    try {
+      const savedUser = JSON.parse(localStorage.getItem("user"));
+      const savedLogin = localStorage.getItem("isLoggedIn") === "true";
+      setLocalLoggedIn(savedLogin);
+      setLocalUser(savedUser);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
-  // if (!ready) {
-  //   return null;
-  // }
-
-  const authenticated = isLoggedIn;
-  //  || localLoggedIn;
+  const authenticated = isLoggedIn || localLoggedIn;
 
   return (
     <Routes>
@@ -36,7 +36,7 @@ function App() {
         path="/dashboard"
         element={
           <PrivateRoute>
-            <Dashboard />
+            <Dashboard user={user || localUser} />
           </PrivateRoute>
         }
       />
