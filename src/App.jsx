@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
@@ -7,11 +8,17 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [localLoggedIn, setLocalLoggedIn] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const savedLogin = localStorage.getItem("isLoggedIn") === "true";
     setLocalLoggedIn(savedLogin);
+    setReady(true);
   }, []);
+
+  if (!ready) {
+    return null;
+  }
 
   const authenticated = isLoggedIn || localLoggedIn;
 
