@@ -6,7 +6,13 @@ import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const localLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const [localLoggedIn, setLocalLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const savedLogin = localStorage.getItem("isLoggedIn") === "true";
+    setLocalLoggedIn(savedLogin);
+  }, []);
+
   const authenticated = isLoggedIn || localLoggedIn;
 
   return (
