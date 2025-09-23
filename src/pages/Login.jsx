@@ -1,14 +1,14 @@
 // Login.jsx
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../Redux_Toolkit/slices/authSlice";
+import { loginAsync } from "../reduxToolkit/auth/authThunk";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = (role) => {
-    dispatch(login({ role, password: "1234" }));
+    dispatch(loginAsync({ role, password: "1234" }));
     navigate("/dashboard");
   };
 
