@@ -1,12 +1,12 @@
 // Dashboard.jsx
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../Redux_Toolkit/slices/authSlice";
-import { fetchDashboard } from "../Redux_Toolkit/slices/dashboardSlice";
+import { logout } from "../reduxToolkit/auth/authSlice";
 import { useEffect } from "react";
-import StudentDashboard from "./StudentDashboard";
-import AdminDashboard from "./AdminDashboard";
-import TeacherDashboard from "./TeacherDashboard";
+import StudentDashboard from "../components/StudentDashboard";
+import AdminDashboard from "../components/AdminDashboard";
+import TeacherDashboard from "../components/TeacherDashboard";
+import { fetchDashboard } from "../reduxToolkit/dashboard/dashboardThunk";
 
 export default function Dashboard({ user }) {
   const { items, loading } = useSelector((state) => state.dashboard);
