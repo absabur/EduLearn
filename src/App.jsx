@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
+import GuestRoute from "./components/GuestRoute";
+import { setAuth } from "./reduxToolkit/auth/authSlice";
 
 function App() {
-  const { isLoggedIn, user } = useSelector((state) => state.auth);
-  const [localLoggedIn, setLocalLoggedIn] = useState(false);
+  const { user } = useSelector((state) => state.auth);
   const [localUser, setLocalUser] = useState(null);
   const dispatch = useDispatch();
 
@@ -15,24 +16,21 @@ function App() {
     try {
       const savedUser = JSON.parse(localStorage.getItem("user"));
       const savedLogin = localStorage.getItem("isLoggedIn") === "true";
-      if (!isLoggedIn || !user) {
-        dispatch({ isLoggedIn: savedLogin, user: savedUser });
-      }
-      setLocalLoggedIn(savedLogin);
+      dispatch(setAuth({ isLoggedIn: savedLogin, user: savedUser }));
       setLocalUser(savedUser);
     } catch (error) {
       console.log(error);
     }
   }, []);
 
-  const authenticated = isLoggedIn || localLoggedIn;
-
   return (
     <Routes>
       <Route
         path="/login"
         element={
-          authenticated ? <Navigate to="/dashboard" replace /> : <Login />
+          <GuestRoute>
+            <Login />
+          </GuestRoute>
         }
       />
 

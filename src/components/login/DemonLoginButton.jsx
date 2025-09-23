@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { loginAsync } from "../../reduxToolkit/auth/authThunk";
 
-export const DemonLoginButton = ({role,children}) => {
+export const DemonLoginButton = ({ role, icon, text }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogin = (role) => {
@@ -13,9 +13,10 @@ export const DemonLoginButton = ({role,children}) => {
   return (
     <button
       onClick={() => handleLogin(role)}
-      className="bg-secondary-text/25 px-4 py-4 rounded-2xl w-full flex flex-col items-center justify-center gap-2 cursor-pointer "
+      className="bg-secondary-text/15 border border-secondary-text/25 px-4 py-3 rounded-2xl w-full flex flex-col items-center justify-center gap-1 cursor-pointer "
     >
-      {children}
+      {icon}
+      <p className="text-primary-text font-semibold text-xs"> {text}</p>
     </button>
   );
 };
