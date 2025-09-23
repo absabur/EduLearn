@@ -9,8 +9,8 @@ export const loginAsync = createAsyncThunk(
         password === "1234"
       ) {
         const user = { role };
-        localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("isLoggedIn", "true");
+        // localStorage.setItem("user", JSON.stringify(user));
+        // localStorage.setItem("isLoggedIn", "true");
         resolve(user);
       } else {
         reject("Invalid credentials!");
