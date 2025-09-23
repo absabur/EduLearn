@@ -4,12 +4,17 @@
 @theme {
   --font-poppins: "Poppins", sans-serif;
   --color-primary: #ffffff;
-  --color-secondary: #602a80;
+  --color-secondary: #831bd8;
   --color-primary-text: #000000;
-  --color-secondary-text: #808080;
+  --color-secondary-text: #a9c6cc;
 }
 
 body {
   font-family: var(--font-poppins);
-  background-color: rgb(230, 228, 233);
+  background-color: #a9c6cc;
+  background-color: rgb(238, 236, 241);
+}
+
+button{
+  cursor: pointer;
 }
