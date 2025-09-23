@@ -4,8 +4,11 @@ import { loginAsync } from "./authThunk";
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: JSON.parse(localStorage.getItem("user")) || null,
-    isLoggedIn: localStorage.getItem("isLoggedIn") === "true",
+    user:
+      // JSON.parse(localStorage.getItem("user")) ||
+      null,
+    isLoggedIn: false,
+    // localStorage.getItem("isLoggedIn") === "true",
     error: null,
   },
   reducers: {
@@ -14,8 +17,8 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.error = null;
 
-      localStorage.removeItem("user");
-      localStorage.removeItem("isLoggedIn");
+      // localStorage.removeItem("user");
+      // localStorage.removeItem("isLoggedIn");
     },
   },
   extraReducers: (builder) => {
