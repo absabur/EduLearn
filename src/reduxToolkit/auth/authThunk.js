@@ -5,6 +5,13 @@ export const loginAsync = createAsyncThunk(
   "auth/loginAsync",
   async ({ email, password, role }, { rejectWithValue }) => {
     return new Promise((resolve, reject) => {
+      if (!role) {
+        Object.keys(accounts).forEach((item) => {
+          if (accounts[item].email == email) {
+            role = item;
+          }
+        });
+      }
       if (
         accounts[role].email == email &&
         accounts[role].password == password
