@@ -3,25 +3,25 @@ const adminStaticData = {
   role: "admin",
   topCards: [
     {
-      head: "Total Students",
+      title: "Total Students",
       icon: "FaUser",
       bigText: "1,247",
       green: "+12%",
     },
     {
-      head: "Active Teachers",
+      title: "Active Teachers",
       icon: "FaChalkboardTeacher",
       bigText: "84",
       green: "+3%",
     },
     {
-      head: "Total Courses",
+      title: "Total Courses",
       icon: "FaBook",
       bigText: "156",
       green: "+8%",
     },
     {
-      head: "Enrollment Rate",
+      title: "Enrollment Rate",
       icon: "FaClipboard",
       bigText: "89%",
       green: "+5%",

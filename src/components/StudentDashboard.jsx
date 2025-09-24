@@ -19,9 +19,9 @@ export default function StudentDashboard({ data }) {
   const { name, topCards, myCourses, upcomingAssignments, achievements } = data;
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-2 md:p-5">
       {/* top section */}
-      <div className="bg-gradient-to-r from-secondary/10 to-primary-text/10 rounded py-4 px-4 space-y-2">
+      <div className="bg-gradient-to-r from-secondary/10 to-primary-text/10 rounded-lg py-4 px-4 space-y-2">
         <h1 className="text-3xl font-semibold">Welcome back, {name}!</h1>
         <p className="text-primary-text/50">
           Continue your learning journey. You have 2 upcoming assignments.
@@ -37,18 +37,18 @@ export default function StudentDashboard({ data }) {
               key={idx}
               className="flex-grow basis-[200px] bg-primary p-5 rounded-lg border border-secondary-text/50"
             >
-              <div className="flex justify-between">
-                <h2 className="font-semibold mb-3">{item.title}</h2>
+              <div className="flex justify-between items-center gap-3">
+                <h2 className="font-semibold mb-2">{item.title}</h2>
                 <Icon />
               </div>
               <p className="text-2xl font-bold">{item.bigText}</p>
-              <p className="text-primary-text/50">{item.text}</p>
+              <p className="text-primary-text/50 text-sm">{item.text}</p>
             </div>
           );
         })}
       </div>
 
-      <div className="flex gap-5">
+      <div className="flex gap-5 flex-wrap">
         {/* recent Users */}
         <div className="flex-3 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
           <div className="flex items-center gap-5 text-2xl font-semibold mb-5">
@@ -61,17 +61,23 @@ export default function StudentDashboard({ data }) {
                 key={item.title}
                 className="border border-secondary-text/50 p-4 rounded-lg"
               >
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center gap-3">
                   <h2 className="text-lg font-semibold">{item.title}</h2>
-                  <span className="text-xs flex items-center font-semibold rounded-xl py-1 px-3 bg-secondary-text/20">
+                  <span
+                    className={`text-xs flex items-center font-semibold rounded-xl py-1 px-3 ${
+                      item.status == "Completed"
+                        ? "bg-secondary text-primary"
+                        : "bg-secondary-text/20 text-primary-text/50"
+                    }`}
+                  >
                     {item.status}
                   </span>
                 </div>
-                <p className="text-primary-text/50 mb-3">by {item.author}</p>
+                <p className="text-primary-text/50 mb-3 text-sm">by {item.author}</p>
                 <div>
-                  <div className="flex justify-between">
-                    <span className="text-primary-text/50">Progress</span>
-                    <span className="">{item.percentage}%</span>
+                  <div className="flex justify-between items-center gap-3">
+                    <span className="text-primary-text/50 text-sm">Progress</span>
+                    <span className="text-sm font-semibold">{item.percentage}%</span>
                   </div>
                   <div className="h-2 mt-1 rounded w-full bg-primary-text/20 overflow-hidden">
                     <div
@@ -79,7 +85,7 @@ export default function StudentDashboard({ data }) {
                       style={{ width: `${item.percentage}%` }}
                     ></div>
                   </div>
-                  <div className="flex justify-between mt-3 text-primary-text/50">
+                  <div className="flex justify-between mt-3 text-primary-text/50 text-sm items-center gap-3">
                     <p className="flex gap-1 items-center">
                       <FaUser /> Next: {item.next}
                     </p>
@@ -105,7 +111,7 @@ export default function StudentDashboard({ data }) {
                   className="border border-secondary-text/50 p-4 rounded-lg"
                   key={item.title}
                 >
-                  <div className="text-sm flex justify-between gap-5 mb-2">
+                  <div className="text-sm flex justify-between gap-3 mb-2 items-start">
                     <h2 className="font-semibold">{item.title}</h2>
                     <span
                       className="text-primary bg-secondary-text/20 text-xs px-3 py-1 rounded-xl border border-secondary-text/50"
