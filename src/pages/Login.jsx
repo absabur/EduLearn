@@ -136,7 +136,7 @@ export default function Login() {
           />
         </div>
         <p className="text-primary-text/50 text-base w-full text-center">
-          Click demo account to direct login
+          All demo accounts use password: 1234
         </p>
       </div>
     </div>
