@@ -1,18 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import studentData from "../../assets/studentData";
-import teacherData from "../../assets/teacherData";
-import adminData from "../../assets/adminData";
+import adminStaticData from "../../assets/admin";
+import teacherStaticData from "../../assets/teacher";
+import studentStaticData from "../../assets/student";
 
 export const fetchDashboard = createAsyncThunk(
   "dashboard/fetchDashboard",
   async (role) => {
     const res = new Promise((resolved) => {
       if (role === "student") {
-        resolved({ ...studentData });
+        resolved({ ...studentStaticData });
       } else if (role === "teacher") {
-        resolved({ ...teacherData });
+        resolved({ ...teacherStaticData });
       } else if (role === "admin") {
-        resolved({ ...adminData });
+        resolved({ ...adminStaticData });
       }
     });
     return await res;

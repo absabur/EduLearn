@@ -1,66 +1,127 @@
-export default function TeacherDashboard({data}) {
-  const { name, stats, courses, upcomingClasses, quickActions } = data;
+import {
+  FaUser,
+  FaBook,
+  FaChalkboardTeacher,
+  FaClipboard,
+  FaUsers,
+} from "react-icons/fa";
+
+import { FaGear } from "react-icons/fa6";
+const icons = {
+  FaUser: FaUser,
+  FaBook: FaBook,
+  FaChalkboardTeacher: FaChalkboardTeacher,
+  FaClipboard: FaClipboard,
+};
+
+export default function TeacherDashboard({ data }) {
+  const { name, topCards, myCourses, upcomingClasses, actions } = data;
 
   return (
-    <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-bold">Welcome, {name}</h1>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {Object.entries(stats).map(([key, value]) => (
-          <div
-            key={key}
-            className="bg-white rounded-2xl shadow p-4 text-center"
-          >
-            <h2 className="text-xl font-semibold">{value}</h2>
-            <p className="capitalize text-gray-500">{key}</p>
-          </div>
-        ))}
+    <div className="flex flex-col gap-5">
+      {/* top section */}
+      <div>
+        <h1>Good morning, {name}!</h1>
+        <p>You have 2 classes today and 18 assignments to review.</p>
       </div>
 
-      {/* Courses */}
-      <div>
-        <h2 className="text-xl font-semibold mb-2">My Courses</h2>
-        <div className="grid md:grid-cols-3 gap-4">
-          {courses.map((c, i) => (
-            <div key={i} className="bg-white rounded-2xl shadow p-4">
-              <h3 className="font-bold">{c.title}</h3>
-              <p className="text-sm text-gray-500">Students: {c.students}</p>
-              <p className="text-sm">Assignments: {c.assignments}</p>
-              <p className="text-sm">Status: {c.status}</p>
+      {/* cards */}
+      <div className="flex gap-3 flex-wrap">
+        {topCards.map((item, idx) => {
+          const Icon = icons[item.icon];
+          return (
+            <div key={idx} className="flex-grow basis-[200px]">
+              <div className="flex justify-between">
+                <h2>{item.title}</h2>
+                <Icon />
+              </div>
+              <p>{item.bigText}</p>
+              <p>{item.text}</p>
             </div>
-          ))}
+          );
+        })}
+      </div>
+
+      <div className="flex gap-4">
+        {/* my courses */}
+        <div className="flex-3 flex gap-3 flex-col">
+          <div className="flex justify-between">
+            <div className="flex gap-3">
+              <FaUsers />
+              <h2>Recent Users</h2>
+            </div>
+            <button>+ New Course</button>
+          </div>
+          <div className="flex flex-col gap-3">
+            {myCourses.map((item) => (
+              <div key={item.title}>
+                <div className="flex justify-between">
+                  <h2>{item.title}</h2>
+                  <span>{item.status}</span>
+                </div>
+                <div className="flex gap-3">
+                  <p className="flex gap-2">
+                    <FaUser /> {item.students} students
+                  </p>
+                  <p className="flex gap-2">
+                    <FaUser /> {item.assignments} assignments
+                  </p>
+                </div>
+                <div className="flex justify-between">
+                  <p className="flex gap-2">
+                    <FaUser /> Next {item.next}
+                  </p>
+                  <div className="flex gap-4">
+                    <button className="flex gap-3">
+                      <FaUser /> View
+                    </button>
+                    <button className="flex gap-3">
+                      <FaUser /> Edit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Upcoming Classes */}
-      <div>
-        <h2 className="text-xl font-semibold mb-2">Upcoming Classes</h2>
-        <ul className="space-y-2">
-          {upcomingClasses.map((cls, i) => (
-            <li
-              key={i}
-              className="bg-white p-3 rounded-2xl shadow flex justify-between"
-            >
-              <span>{cls.title}</span>
-              <span className="text-sm text-gray-500">{cls.status}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="flex-1 flex flex-col gap-5">
+          {/* pending approvals */}
+          <div>
+            <h2 className="flex gap-3">
+              <FaGear /> Upcoming Classes
+            </h2>
+            <div className="flex flex-col gap-3 mt-3">
+              {upcomingClasses.map((item) => (
+                <div key={item.title}>
+                  <div className="flex justify-between">
+                    <h3>{item.title}</h3>
+                    <span>{item.day}</span>
+                  </div>
+                  <p>{item.duration}</p>
+                  <div className="flex justify-between">
+                    <span>{item.students} students</span>
+                    <span>Room {item.room}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-      {/* Quick Actions */}
-      <div>
-        <h2 className="text-xl font-semibold mb-2">Quick Actions</h2>
-        <div className="flex gap-3">
-          {quickActions.map((action, i) => (
-            <button
-              key={i}
-              className="px-4 py-2 bg-blue-500 text-white rounded-xl shadow"
-            >
-              {action}
-            </button>
-          ))}
+          {/* actions */}
+          <div>
+            <h1>Quick Actions</h1>
+            <div className="flex gap-3 flex-col mt-3">
+              {actions.map((item) => {
+                const Icon = icons[item.icon];
+                return (
+                  <button key={item.title} className="flex gap-2">
+                    <Icon /> <span>{item.title}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>
