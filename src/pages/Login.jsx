@@ -1,9 +1,42 @@
-// Login.jsx
 import { FaBook, FaGraduationCap, FaUsers } from "react-icons/fa";
 import ContentCard from "../components/login/ContentCard";
 import { DemonLoginButton } from "../components/login/DemonLoginButton";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { loginAsync } from "../reduxToolkit/auth/authThunk";
+import { toast } from "sonner";
+import { clearError } from "../reduxToolkit/auth/authSlice";
 
 export default function Login() {
+  const { error } = useSelector((state) => state.auth);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (!email) {
+      toast.warning("Enter Email!");
+      return;
+    }
+    if (!password) {
+      toast.warning("Enter Password");
+      return;
+    }
+    dispatch(loginAsync({ email, password, role }));
+    navigate("/dashboard");
+  };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch(clearError());
+    }
+  }, [error]);
+
   return (
     <div className="container mx-auto md:p-6 p-2 flex flex-col md:flex-row gap-20 justify-center items-center min-h-screen">
       <div className="flex-1 max-w-[550px] hidden lg:flex flex-col items-center justify-center gap-6">
@@ -38,12 +71,17 @@ export default function Login() {
         <p className="text-primary-text/50 text-base w-full text-center">
           Sign in to access your learning dashbroad
         </p>
-        <form className="w-full flex flex-col gap-3 mt-3">
+        <form
+          onSubmit={handleLogin}
+          className="w-full flex flex-col gap-3 mt-3"
+        >
           <label htmlFor="email"> Email</label>
           <input
             id="email"
             type="text"
             placeholder="Username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded"
           />
           <label htmlFor="password">Password</label>
@@ -51,6 +89,8 @@ export default function Login() {
             id="password"
             type="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded"
           />
           <button
@@ -67,23 +107,32 @@ export default function Login() {
           <hr className="flex-1 text-primary-text/50" />
         </div>
         {/* demo account button */}
-        <div className="grid grid-cols-2 gap-3 w-full mt-4">
+        <div className="flex flex-wrap gap-3 w-full mt-4">
           <DemonLoginButton
             role={"student"}
             text={"Student"}
             icon={<FaGraduationCap className="text-lg text-blue-500" />}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            setRole={setRole}
           />
 
           <DemonLoginButton
             role={"teacher"}
             text={"Teacher"}
             icon={<FaBook className="text-lg text-green-500" />}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            setRole={setRole}
           />
 
           <DemonLoginButton
             role={"admin"}
             text={"Admin"}
             icon={<FaUsers className="text-lg text-orange-400" />}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            setRole={setRole}
           />
         </div>
         <p className="text-primary-text/50 text-base w-full text-center">

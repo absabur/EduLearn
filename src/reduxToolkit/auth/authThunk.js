@@ -1,12 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import accounts from "../../assets/demoAccount";
 
 export const loginAsync = createAsyncThunk(
   "auth/loginAsync",
-  async ({ role, password }, { rejectWithValue }) => {
+  async ({ email, password, role }, { rejectWithValue }) => {
     return new Promise((resolve, reject) => {
       if (
-        ["student", "teacher", "admin"].includes(role) &&
-        password === "1234"
+        accounts[role].email == email &&
+        accounts[role].password == password
       ) {
         const user = { role };
         localStorage.setItem("user", JSON.stringify(user));

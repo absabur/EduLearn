@@ -4,25 +4,25 @@ const studentStaticData = {
   topCards: [
     {
       title: "Enrolled Courses",
-      icon: "FaUser",
+      icon: "IoBookOutline",
       bigText: 3,
       text: "+1 trom last month",
     },
     {
       title: "Completed",
-      icon: "FaUser",
+      icon: "LiaCertificateSolid",
       bigText: 1,
       text: "Dataoase Vanaaement",
     },
     {
       title: "Study Hours",
-      icon: "FaUser",
+      icon: "MdOutlineWatchLater",
       bigText: 24,
       text: "This Week",
     },
     {
       title: "Average Grade",
-      icon: "FaUser",
+      icon: "LiaCertificateSolid",
       bigText: "A-",
       text: "+1 trom last month",
     },

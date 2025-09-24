@@ -3,16 +3,26 @@ import {
   FaBook,
   FaChalkboardTeacher,
   FaClipboard,
-  FaUsers,
 } from "react-icons/fa";
 
-import { FaGear } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
+import { FiUsers } from "react-icons/fi";
+import { CiCalendarDate } from "react-icons/ci";
+import { FaFileAlt } from "react-icons/fa";
+import { IoBookOutline } from "react-icons/io5";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEdit } from "react-icons/fa";
 
 const icons = {
   FaUser: FaUser,
   FaBook: FaBook,
   FaChalkboardTeacher: FaChalkboardTeacher,
   FaClipboard: FaClipboard,
+  IoBookOutline,
+  FiUsers,
+  FaFileAlt,
+  CiCalendarDate,
+  FaPlus,
 };
 
 export default function TeacherDashboard({ data }) {
@@ -50,10 +60,10 @@ export default function TeacherDashboard({ data }) {
 
       <div className="flex gap-5 flex-wrap">
         {/* my courses */}
-        <div className="flex-3 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
+        <div className="flex-6 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
           <div className="flex items-center justify-between mb-5 items-center gap-3">
             <div className="flex items-center gap-3 text-2xl font-semibold">
-              <FaUsers />
+              <IoBookOutline />
               <h2>My Courses</h2>
             </div>
             <button className="text-xs font-semibold rounded-lg bg-secondary text-primary border border-secondary-text/50 py-2 px-3">
@@ -84,19 +94,19 @@ export default function TeacherDashboard({ data }) {
                     <FaUser /> {item.students} students
                   </p>
                   <p className="flex gap-1 items-center">
-                    <FaUser /> {item.assignments} assignments
+                    <FaFileAlt /> {item.assignments} assignments
                   </p>
                 </div>
                 <div className="flex justify-between mt-2 text-primary-text/50 items-center gap-3 text-sm">
                   <p className="flex gap-1 items-center">
-                    <FaUser /> Next: {item.next}
+                    <CiCalendarDate /> Next: {item.next}
                   </p>
                   <div className="flex gap-3">
                     <button className="text-xs font-semibold flex gap-2 items-center rounded-lg bg-secondary-text/20 border border-secondary-text/50 py-2 px-3 text-primary-text">
-                      <FaUser /> View
+                      <FaRegEye /> View
                     </button>
                     <button className="text-xs font-semibold flex gap-2 items-center rounded-lg bg-secondary-text/20 border border-secondary-text/50 py-2 px-3 text-primary-text">
-                      <FaUser /> Edit
+                      <FaRegEdit /> Edit
                     </button>
                   </div>
                 </div>
@@ -106,11 +116,11 @@ export default function TeacherDashboard({ data }) {
         </div>
 
         {/* right section */}
-        <div className="flex-1 flex flex-col gap-5">
+        <div className="flex-3 flex flex-col gap-5">
           {/* upcoming classes */}
           <div className="flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
             <h2 className="flex items-center gap-3 text-xl font-semibold">
-              <FaGear /> Upcoming Classes
+              <CiCalendarDate /> Upcoming Classes
             </h2>
             <div className="flex flex-col gap-5 mt-3">
               {upcomingClasses.map((item) => (
