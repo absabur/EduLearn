@@ -52,10 +52,10 @@ export default function AdminDashboard({ data }) {
         })}
       </div>
 
-      <div className="flex gap-5 flex-wrap">
+      <div className="w-full md:flex gap-5 flex-wrap">
         {/* recent users */}
-        <div className="flex-3 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
-          <div className="flex items-center justify-between mb-5 items-center gap-3">
+        <div className="flex-6 min-w-0 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
+          <div className="flex items-center justify-between mb-5 gap-3">
             <div className="flex items-center gap-3 text-2xl font-semibold">
               <FaUsers />
               <h2>Recent Users</h2>
@@ -65,66 +65,63 @@ export default function AdminDashboard({ data }) {
             </button>
           </div>
 
+          {/* 🔑 scroll wrapper */}
           <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="text-left text-primary-text/50">
-                  <th className="p-3">Name</th>
-                  <th className="p-3">Email</th>
-                  <th className="p-3">Role</th>
-                  <th className="p-3">Status</th>
-                  <th className="p-3">Date</th>
-                  <th className="p-3">Action</th>
+            <table className="min-w-[700px] w-full text-sm border-collapse">
+              <tr className="text-left text-primary-text/50">
+                <th className="p-3">Name</th>
+                <th className="p-3">Email</th>
+                <th className="p-3">Role</th>
+                <th className="p-3">Status</th>
+                <th className="p-3">Date</th>
+                <th className="p-3">Action</th>
+              </tr>
+              {recentUsers.map((item, idx) => (
+                <tr
+                  key={idx}
+                  className="border-t border-secondary-text/30 hover:bg-secondary-text/10"
+                >
+                  <td className="p-3 whitespace-nowrap">{item?.name}</td>
+                  <td className="p-3 whitespace-nowrap">{item?.email}</td>
+                  <td className="p-3">
+                    <span
+                      className={`w-fit text-xs flex items-center font-semibold rounded-xl py-1 px-3 ${
+                        item.role == "Teacher"
+                          ? "bg-secondary text-primary"
+                          : "bg-secondary-text/20 text-primary-text/50"
+                      }`}
+                    >
+                      {item?.role}
+                    </span>
+                  </td>
+                  <td className="p-3">
+                    <span
+                      className={`w-fit text-xs flex items-center font-semibold rounded-xl py-1 px-3 ${
+                        item.status == "Active"
+                          ? "bg-secondary text-primary"
+                          : "bg-secondary-text/20 text-primary-text/50"
+                      }`}
+                    >
+                      {item?.status}
+                    </span>
+                  </td>
+                  <td className="p-3 whitespace-nowrap">{item?.date}</td>
+                  <td className="p-3 flex gap-1">
+                    <button className="text-xs font-semibold rounded-lg bg-secondary-text/20 border border-secondary-text/50 px-3 py-1">
+                      Edit
+                    </button>
+                    <button className="text-xs font-semibold rounded-lg bg-secondary-text/20 border border-secondary-text/50 px-3 py-1">
+                      Delete
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {recentUsers.map((item, idx) => (
-                  <tr
-                    key={idx}
-                    className="border-t border-secondary-text/30 hover:bg-secondary-text/10"
-                  >
-                    <td className="p-3">{item?.name}</td>
-                    <td className="p-3">{item?.email}</td>
-                    <td className="p-3">
-                      <span
-                        className={`w-[fit-content] text-xs flex items-center font-semibold rounded-xl py-1 px-3 ${
-                          item.role == "Teacher"
-                            ? "bg-secondary text-primary"
-                            : "bg-secondary-text/20 text-primary-text/50"
-                        }`}
-                      >
-                        {item?.role}
-                      </span>
-                    </td>
-                    <td className="p-3">
-                      <span
-                        className={`w-[fit-content] text-xs flex items-center font-semibold rounded-xl py-1 px-3 ${
-                          item.status == "Active"
-                            ? "bg-secondary text-primary"
-                            : "bg-secondary-text/20 text-primary-text/50"
-                        }`}
-                      >
-                        {item?.status}
-                      </span>
-                    </td>
-                    <td className="p-3">{item?.date}</td>
-                    <td className="p-3 flex gap-1">
-                      <button className="text-xs font-semibold rounded-lg bg-secondary-text/20 border border-secondary-text/50 px-3 py-1">
-                        Edit
-                      </button>
-                      <button className="text-xs font-semibold rounded-lg bg-secondary-text/20 border border-secondary-text/50 px-3 py-1">
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+              ))}
             </table>
           </div>
         </div>
 
         {/* pending approvals */}
-        <div className="flex-1 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
+        <div className="flex-3 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
           <h2 className="flex items-center gap-3 text-xl font-semibold mb-3">
             <FaGear /> Pending Approvals
           </h2>

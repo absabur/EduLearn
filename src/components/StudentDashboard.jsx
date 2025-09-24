@@ -1,18 +1,17 @@
-import {
-  FaUser,
-  FaBook,
-  FaChalkboardTeacher,
-  FaClipboard,
-  FaUsers,
-} from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { IoBookOutline } from "react-icons/io5";
 
-import { FaGear } from "react-icons/fa6";
+import { LiaCertificateSolid } from "react-icons/lia";
+import { MdOutlineWatchLater } from "react-icons/md";
+import { FaFileAlt } from "react-icons/fa";
+import { CiCalendarDate } from "react-icons/ci";
+import { CiPlay1 } from "react-icons/ci";
 
 const icons = {
-  FaUser: FaUser,
-  FaBook: FaBook,
-  FaChalkboardTeacher: FaChalkboardTeacher,
-  FaClipboard: FaClipboard,
+  FaUser,
+  IoBookOutline,
+  LiaCertificateSolid,
+  MdOutlineWatchLater,
 };
 
 export default function StudentDashboard({ data }) {
@@ -50,9 +49,9 @@ export default function StudentDashboard({ data }) {
 
       <div className="flex gap-5 flex-wrap">
         {/* recent Users */}
-        <div className="flex-3 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
+        <div className="flex-6 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
           <div className="flex items-center gap-5 text-2xl font-semibold mb-5">
-            <FaUsers />
+            <IoBookOutline />
             <h2>My Courses</h2>
           </div>
           <div className="flex flex-col gap-5">
@@ -73,11 +72,17 @@ export default function StudentDashboard({ data }) {
                     {item.status}
                   </span>
                 </div>
-                <p className="text-primary-text/50 mb-3 text-sm">by {item.author}</p>
+                <p className="text-primary-text/50 mb-3 text-sm">
+                  by {item.author}
+                </p>
                 <div>
                   <div className="flex justify-between items-center gap-3">
-                    <span className="text-primary-text/50 text-sm">Progress</span>
-                    <span className="text-sm font-semibold">{item.percentage}%</span>
+                    <span className="text-primary-text/50 text-sm">
+                      Progress
+                    </span>
+                    <span className="text-sm font-semibold">
+                      {item.percentage}%
+                    </span>
                   </div>
                   <div className="h-2 mt-1 rounded w-full bg-primary-text/20 overflow-hidden">
                     <div
@@ -87,10 +92,10 @@ export default function StudentDashboard({ data }) {
                   </div>
                   <div className="flex justify-between mt-3 text-primary-text/50 text-sm items-center gap-3">
                     <p className="flex gap-1 items-center">
-                      <FaUser /> Next: {item.next}
+                      <CiCalendarDate /> Next: {item.next}
                     </p>
-                    <button className="text-xs font-semibold flex gap-3 items-center rounded-2xl bg-secondary-text/20 border border-secondary-text/50 py-2 px-3">
-                      <FaUser /> Continue
+                    <button className="text-xs font-semibold flex gap-2 items-center rounded-2xl bg-secondary-text/20 border border-secondary-text/50 py-2 px-3">
+                      <CiPlay1 /> Continue
                     </button>
                   </div>
                 </div>
@@ -99,11 +104,11 @@ export default function StudentDashboard({ data }) {
           </div>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-3">
           {/* pending approvals */}
           <div className="flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
-            <h2 className="flex items-center gap-5 text-xl font-semibold">
-              <FaGear /> Upcoming Assingments
+            <h2 className="flex items-center gap-5 text-lg font-semibold">
+              <FaFileAlt /> Upcoming Assingments
             </h2>
             <div className="flex flex-col gap-5 mt-3">
               {upcomingAssignments.map((item) => (
@@ -134,12 +139,12 @@ export default function StudentDashboard({ data }) {
           </div>
           <div className="mt-4 bg-primary border border-secondary-text/50 p-5 rounded-lg">
             <h2 className="flex items-center gap-3 text-lg font-semibold mb-5">
-              <FaUser /> Recent Achivements
+              <LiaCertificateSolid className="font-bold" /> Recent Achivements
             </h2>
             {achievements.map((item) => (
               <div key={item.title} className="flex gap-3 mt-3 items-center">
                 <div className="h-8 w-8 flex items-center justify-center text-secondary/60 rounded-full bg-secondary/20">
-                  <FaUser />
+                  <LiaCertificateSolid />
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold">{item.comment}</h3>

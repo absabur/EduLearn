@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router";
 import { logout } from "../../reduxToolkit/auth/authSlice";
 import { sidebarData } from "../../assets/sidebarData";
 
-const SideBar = ({ role }) => {
+const SideBar = ({ role, name }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ const SideBar = ({ role }) => {
   const menus = sidebarData.find((item) => item.role === role)?.menus || [];
 
   return (
-    <div className="h-dvh p-3 relative">
+    <div className="h-dvh p-3 relative flex flex-col">
       <div className="flex items-center gap-3 my-6">
         <div className="bg-secondary text-white w-12 h-12 flex items-center justify-center rounded-2xl text-3xl">
           <FaGraduationCap />
@@ -27,15 +27,15 @@ const SideBar = ({ role }) => {
           <p className="text-xs">Learinng Management System</p>
         </div>
       </div>
-      <p>Navigation</p>
-      <div className="flex flex-col gap-2 mt-3">
+      <p className="text-sm text-primary-text/50">Navigation</p>
+      <div className="flex flex-col gap-1 mt-3">
         {menus.map((menu, index) => {
           const Icon = menu.icon;
           return (
             <Link
               to={"#"}
               key={index}
-              className="flex gap-2 items-center text-primary-text/70 px-1.5 py-0.5"
+              className={`flex gap-2 items-center px-2 py-1.5 rounded-lg ${index == 0 ? "bg-secondary text-primary" : "text-primary-text/70"}`}
             >
               <Icon /> <p>{menu.title}</p>
             </Link>
@@ -43,14 +43,14 @@ const SideBar = ({ role }) => {
         })}
       </div>
       <div className="mt-6">
-        <p>Ouick Access</p>
+        <p className="text-sm text-primary-text/50">Ouick Access</p>
         <div className="flex flex-col gap-2 mt-3 ">
           <Link
             to={"3"}
             className="flex justify-between items-center gap-3 items-center text-primary-text/70"
           >
-            <div className="flex gap-2 items-center px-1.5 py-0.5 rounded-lg">
-              <FaHome /> <p>Dashboard</p>
+            <div className="flex gap-2 items-center px-2 py-1.5 rounded-lg">
+              <FaHome /> <p>Notifications</p>
             </div>
             <div className="bg-secondary h-5 w-5 rounded-full text-white p-2.5 text-sm flex items-center justify-center">
               3
@@ -59,14 +59,20 @@ const SideBar = ({ role }) => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center absolute bottom-0 w-full left-0 p-3">
+      <div className="flex justify-between items-center mt-auto w-full left-0 p-3">
         <div className="flex items-center gap-3 ">
           <div className="w-10 h-10 rounded-full bg-secondary"></div>
           <div>
             <p className="text-primary-text/70 text-md font-semibold">
-              Jhon Student
+              {role === "admin" && `${name} Admin`}
+              {role === "student" && `${name} Student`}
+              {role === "teacher" && `${name} Teacher`}
             </p>
-            <p className="text-xs text-primary-text/50">Student</p>
+            <p className="text-xs text-primary-text/50">
+              {role === "admin" && `Admin`}
+              {role === "student" && `Student`}
+              {role === "teacher" && `Teacher`}
+            </p>
           </div>
         </div>
         <div>

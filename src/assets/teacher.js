@@ -4,25 +4,25 @@ const teacherStaticData = {
   topCards: [
     {
       title: "My Courses",
-      icon: "FaUser",
+      icon: "IoBookOutline",
       bigText: 3,
       text: "2 active, 1 draft",
     },
     {
       title: "Total Students",
-      icon: "FaUser",
+      icon: "FiUsers",
       bigText: 57,
       text: "Across all course",
     },
     {
       title: "Pending Reviews",
-      icon: "FaUser",
+      icon: "FaFileAlt",
       bigText: 18,
       text: "Assignments to grade",
     },
     {
       title: "Classes Today",
-      icon: "FaUser",
+      icon: "CiCalendarDate",
       bigText: 2,
       text: "Next at 10:00 AM",
     },
@@ -68,15 +68,15 @@ const teacherStaticData = {
   ],
   actions: [
     {
-      icon: "FaUser",
+      icon: "FaPlus",
       title: "Create New Course",
     },
     {
-      icon: "FaUser",
+      icon: "FaFileAlt",
       title: "Create Assignment",
     },
     {
-      icon: "FaUser",
+      icon: "FiUsers",
       title: "Manage Students",
     },
   ],

@@ -22,13 +22,13 @@ export default function Dashboard({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex gap-3">
+    <div className="flex">
       <div
         className={`${
           sidebarOpen ? "left-0" : "-left-[269px]"
-        } fixed md:static  md:flex-3 lg:flex-1 bg-primary border-r border-secondary-text/50  transition-all duration-300  transition-all duration-300`}
+        } fixed md:relative md:sticky md:top-0 flex-shrink-0 w-[269px] bg-primary border-r border-secondary-text/50 transition-all duration-300 overflow-y-auto max-h-screen`}
       >
-        <SideBar role={user.role} />
+        <SideBar role={user.role} name={items?.name} />
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="md:hidden p-2 text-2xl m-2 fixed top-0 right-0"
@@ -37,18 +37,7 @@ export default function Dashboard({ user }) {
         </button>
       </div>
 
-      {/* side bar for mobail device */}
-
-      {/* <div>
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="md:hidden p-2  text-2xl bg-primary text-white rounded"
-        >
-          <MdMenu />
-        </button>
-      </div> */}
-
-      <div className="w-full md:flex-5 lg:flex-7 xl:flex-5">
+      <div className="flex-1 min-w-0 w-full">
         {items?.role == "student" && <StudentDashboard data={items} />}
         {items?.role == "admin" && <AdminDashboard data={items} />}
         {items?.role == "teacher" && <TeacherDashboard data={items} />}
