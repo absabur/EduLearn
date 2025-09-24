@@ -34,7 +34,7 @@ export default function Dashboard({ user }) {
       <div
         className={`${
           sidebarOpen ? "left-0" : "-left-[269px]"
-        } fixed md:static  md:flex-3 lg:flex-1 bg-primary transition-all duration-300 `}
+        } fixed md:static  md:flex-3 lg:flex-2 xl:flex-1 bg-primary transition-all duration-300 `}
       >
         <SideBar />
         <button
@@ -56,7 +56,7 @@ export default function Dashboard({ user }) {
         </button>
       </div> */}
 
-      <div className="w-full md:flex-5 lg:flex-6">
+      <div className="w-full md:flex-5 lg:flex-7 xl:flex-5">
         {items?.role == "student" && <StudentDashboard data={items} />}
         {items?.role == "admin" && <AdminDashboard data={items} />}
         {items?.role == "teacher" && <TeacherDashboard data={items} />}

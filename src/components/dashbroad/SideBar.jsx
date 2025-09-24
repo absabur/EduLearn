@@ -1,4 +1,3 @@
-import React from "react";
 import { FaGraduationCap, FaHome } from "react-icons/fa";
 import { Link } from "react-router";
 
@@ -9,10 +8,10 @@ const SideBar = () => {
         <div className="bg-secondary text-white w-12 h-12 flex items-center justify-center rounded-2xl text-3xl">
           <FaGraduationCap />
         </div>
-        <p className="flex flex-col ">
+        <div className="flex flex-col ">
           <p className="text-primary-text font-semibold">EduLearn</p>
           <p className="text-xs">Learinng Management System</p>
-        </p>
+        </div>
       </div>
       <p>Navigation</p>
       <div className="flex flex-col gap-2 mt-3">
@@ -56,8 +55,10 @@ const SideBar = () => {
       <div className="mt-6">
         <p>Ouick Access</p>
         <div className="flex flex-col gap-2 mt-3 ">
-          <Link to={"3"} className="flex justify-between items-center text-primary-text/70">
-            {" "}
+          <Link
+            to={"3"}
+            className="flex justify-between  items-center gap-3 items-center text-primary-text/70"
+          >
             <div className="flex gap-2 items-center px-1.5 py-0.5 rounded-lg">
               <FaHome /> <p>Dashboard</p>
             </div>
