@@ -54,7 +54,7 @@ export default function AdminDashboard({ data }) {
 
       <div className="w-full flex gap-5 flex-wrap">
         {/* recent users */}
-        <div className="min-w-[300px] md:min-w-[500px] flex-6 min-w-0 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
+        <div className="min-w-[300px] flex-6 min-w-0 flex flex-col bg-primary p-5 rounded-lg border border-secondary-text/50">
           <div className="flex items-center justify-between mb-5 gap-3">
             <div className="flex items-center gap-3 text-2xl font-semibold">
               <FaUsers />
