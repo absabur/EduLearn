@@ -26,7 +26,7 @@ export default function Dashboard({ user }) {
       <div
         className={`${
           sidebarOpen ? "left-0" : "-left-[269px]"
-        } fixed md:static  md:flex-3 lg:flex-1 bg-primary border-r border-secondary-text/50  transition-all duration-300 `}
+        } fixed md:static  md:flex-3 lg:flex-1 bg-primary border-r border-secondary-text/50  transition-all duration-300  transition-all duration-300`}
       >
         <SideBar role={user.role} />
         <button
@@ -36,7 +36,19 @@ export default function Dashboard({ user }) {
           {sidebarOpen ? <GiTireIronCross /> : <MdMenu />}
         </button>
       </div>
-      <div className="w-full md:flex-5 lg:flex-6">
+
+      {/* side bar for mobail device */}
+
+      {/* <div>
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="md:hidden p-2  text-2xl bg-primary text-white rounded"
+        >
+          <MdMenu />
+        </button>
+      </div> */}
+
+      <div className="w-full md:flex-5 lg:flex-7 xl:flex-5">
         {items?.role == "student" && <StudentDashboard data={items} />}
         {items?.role == "admin" && <AdminDashboard data={items} />}
         {items?.role == "teacher" && <TeacherDashboard data={items} />}
